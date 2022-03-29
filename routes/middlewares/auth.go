@@ -32,10 +32,6 @@ func CheckRequest(c *fiber.Ctx) error {
 	user := new(models.User)
 
 	if err := collection.User.FindOne(context.Background(), bson.M{"uid": jwt_auth.UID}).Decode(&user); err != nil {
-		return c.Status(500).JSON(controllers.ServerInternalError)
-	}
-
-	if len(user.Email) == 0 {
 		user = &models.User{
 			UID:   jwt_auth.UID,
 			Email: jwt_auth.Email,

@@ -1,4 +1,4 @@
-package api
+package main
 
 import (
 	"github.com/shinhagunn/shop-product/config"

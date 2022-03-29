@@ -36,6 +36,10 @@ func InitRouter() {
 
 	api_resource := app.Group("/api/v2/resource", middlewares.CheckRequest)
 	{
+		// Get user info
+		api_resource.Get("/user", resource.GetUserCurrent)
+		// Update profile
+		api_resource.Post("/user/update/profile", resource.UpdateUserProfile)
 		// Add product to cart
 		api_resource.Post("/user/cart", resource.AddProductToCart)
 		// Get all product in cart
@@ -74,5 +78,5 @@ func InitRouter() {
 		api_admin.Delete("/slide/:id", middlewares.MustAdmin, admin.DeleteSlide)
 	}
 
-	app.Listen(":3003")
+	app.Listen(":3002")
 }
